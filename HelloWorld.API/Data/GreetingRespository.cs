@@ -21,7 +21,7 @@ namespace HelloWorld.API.Data
             return greeting;
         }
 
-        public async Task<IEnumerable<Greeting>> GetGreetings()
+        public async Task<List<Greeting>> GetGreetings()
         {
             var greetings = await _context.Greetings.ToListAsync();
 

@@ -6,7 +6,7 @@ namespace HelloWorld.API.Data
 {
     public interface IGreetingRespository
     {
-         Task<IEnumerable<Greeting>> GetGreetings();
+         Task<List<Greeting>> GetGreetings();
          Task<Greeting> GetGreeting(int id);
     }
 }
