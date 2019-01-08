@@ -1,0 +1,48 @@
+@page "/helloworlds"
+@inject HttpClient Http
+
+
+<h3>Hello World, Langauges</h3>
+
+@if (greetings == null) 
+{
+    <p><em>Loading...</em></p>
+}
+else 
+{
+    <div class="table">
+        <thead>
+            <tr>
+                <th>Greeting</th>
+                <th>Language</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var greeting in greetings)
+            {
+                <tr>
+                    <td>@greeting.helloWorld</td>
+                    <td>@greeting.langauge</td>
+                </tr>
+            }
+        </tbody>
+    </div>
+}
+
+
+
+@functions {
+    Greetings[] greetings;
+
+    protected override async Task OnInitAsync() 
+    {
+        greetings = await Http.GetJsonAsync<Greetings[]>("http://localhost:5050/api/greetings");
+    }
+
+    class Greetings 
+    {
+        public int id { get; set; }
+        public string helloWorld { get; set; }
+        public string langauge { get; set; }
+    }
+}

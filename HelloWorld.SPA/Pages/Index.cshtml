@@ -1,0 +1,32 @@
+﻿@page "/"
+@inject HttpClient Http
+
+<h1>Welcome</h1>
+<hr>
+@if (greeting == null) 
+{
+    <p><em>Loading...</em></p>
+}
+else 
+{
+    <h3>@greeting.helloWorld</h3>
+    <p> <small>@greeting.langauge</small></p>
+    <hr>
+    <p>To see 'Hello World!' in other langauges click on the <a href="helloworlds">Helloworld's</a>  tab.</p> 
+}
+
+@functions {
+    Greetings greeting;
+
+    protected override async Task OnInitAsync() 
+    {
+        greeting = await Http.GetJsonAsync<Greetings>("http://localhost:5050/api/greetings/1");
+    }
+
+    class Greetings
+    {
+        public int id { get; set; }
+        public string helloWorld { get; set; }
+        public string langauge { get; set; }
+    }
+}
