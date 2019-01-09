@@ -6,6 +6,8 @@ HelloWorld.API contains an Asp.Net Core Web Api with 1 controller, that returns 
 1. Open a terminal in .\HelloWorld.API directory.
 2. Type in **dotnet restore**
 3. When all the dependancies have been restored, type in **dotnet run**.
+
+*This requires dotnet core 2.2 or higher to run. 
     
 
 
@@ -24,6 +26,7 @@ HelloWorld.Tests contains the unit test needed for the HelloWorld.API.  There ar
 2. Type in **dotnet restore** to get all the dependancies for the classLibrary.
 3. Once all the dependancies are installed, type in **dotnet test**
 
+*This requires dotnet core 2.2 or higher to run. 
 
 All code compiles and executes. 
 
