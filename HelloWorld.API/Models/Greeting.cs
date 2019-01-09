@@ -4,7 +4,7 @@ namespace HelloWorld.API.Models
     {
         public int Id { get; set; }
         public string HelloWorld { get; set; }
-        public string Langauge { get; set; }
+        public string Langauge { get; set; } 
 
     }
 }
