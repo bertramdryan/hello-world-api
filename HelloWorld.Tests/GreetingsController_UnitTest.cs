@@ -28,13 +28,29 @@ namespace HelloWorld.Tests
                 new Greeting {HelloWorld = "Γειά σου Κόσμε!", Langauge = "Greek"}
             };
 
-            _greetingRepoMock.Setup(repo => repo.GetGreetings()).Returns(Task.FromResult(mockGreentingList));
+            _greetingRepoMock.Setup(repo => repo.GetGreetings()).ReturnsAsync((mockGreentingList));
 
             var result = await _controller.GetGreetings();
 
-            Assert.Equal(mockGreentingList, result);
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var returnValue = Assert.IsType<List<Greeting>>(okResult.Value);
 
+            Assert.Equal(mockGreentingList, returnValue);
+        }
 
+        [Fact]
+        public async void Greeting_should_return_object()
+        {
+            var mockGreetingObject = new Greeting {HelloWorld = "Hello, World!", Langauge="English"};
+
+            _greetingRepoMock.Setup(repo => repo.GetGreeting(1)).ReturnsAsync(mockGreetingObject);
+
+            var result = await _controller.GetGreeting(1);
+
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var returnValue = Assert.IsType<Greeting>(okResult.Value);
+
+            Assert.Equal(mockGreetingObject, returnValue);
         }
     }
 }
